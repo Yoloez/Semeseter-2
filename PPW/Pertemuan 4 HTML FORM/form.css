@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url("bg form.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.utama {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.isi {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  color: white;
+  transition: 0.3s;
+}
+
+.isi:focus {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+label {
+  position: absolute;
+  top: 12px;
+  left: 15px;
+  font-size: 14px;
+  color: white;
+  transition: 0.3s;
+  pointer-events: none;
+}
+.isi::placeholder {
+  color: rgba(0, 0, 0, 0.7); /* Warna placeholder */
+  transition: opacity 0.3s ease; /* Animasi efek menghilang */
+}
+
+.isi:focus::placeholder {
+  opacity: 0;
+  color: transparent; /* Placeholder menghilang saat mengetik */
+}
+
+.isi:focus + label,
+.isi:not(:placeholder-shown) + label {
+  left: 10px;
+  font-size: 12px;
+  color: rgb(247, 255, 255);
+}
+
+.dropdown {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.dropdown:focus {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.submit {
+  width: 100%;
+  padding: 12px;
+  background: rgb(213, 188, 97);
+  color: rgb(253, 253, 253);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.submit:hover {
+  background: rgb(143, 90, 46);
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="form.css" />
+    <title>Pendaftaran Competitive Programming</title>
+  </head>
+  <body>
+    <form class="utama">
+      <h1>Form Pendaftaran</h1>
+      <div class="input-container">
+        <input type="text" required class="isi" />
+        <label>Nama Lengkap</label>
+      </div>
+      <div class="input-container">
+        <input type="email" required class="isi" />
+        <label>Email</label>
+      </div>
+      <div class="input-container">
+        <input type="text" required class="isi" />
+        <label>Nomor Telepon</label>
+      </div>
+      <div class="input-container">
+        <select id="univ" name="univ" class="dropdown">
+          <option value="univ" disabled selected>Pilih Universitas</option>
+          <option value="Universitas Gadjah Mada">Universitas Gadjah Mada</option>
+          <option value="Institut Teknologi Bandung">Institut Teknologi Bandung</option>
+          <option value="Universitas Indonesia">Universitas Indonesia</option>
+        </select>
+      </div>
+      <button type="submit" class="submit">Daftar</button>
+    </form>
+  </body>
+</html>
