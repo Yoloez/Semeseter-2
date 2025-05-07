@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table border="1" style="display: block" id="tabel" width="300px">
+      <tr>
+        <td>nama</td>
+        <td id="nama"></td>
+      </tr>
+
+      <tr>
+        <td>NIM</td>
+        <td id="nim"></td>
+      </tr>
+
+      <tr>
+        <td>Angkatan</td>
+        <td id="angkatan"></td>
+      </tr>
+    </table>
+
+    <script>
+      var input = confirm("Apakah anda praktikan PPW1? (y/n)");
+
+      if (input) {
+        var name = prompt("masukkan nama kamu:");
+        var NIM = prompt("masukkan NIM kamu:");
+        var angkatan = prompt("masukkan Angkatan kamu:");
+
+        var jeneng = document.getElementById("nama");
+        jeneng.innerHTML = name;
+        var nim = document.getElementById("nim");
+        nim.innerHTML = NIM;
+
+        var ANGKATAN = document.getElementById("angkatan");
+        ANGKATAN.innerHTML = angkatan;
+      } else {
+        alert("Anda bukan praktikan PPW1, anda tidak boleh masuk!");
+      }
+    </script>
+  </body>
+</html>
