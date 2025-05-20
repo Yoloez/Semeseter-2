@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Lengkap</title>
+    <style>
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #000000;
+        --btn-bg: #eee;
+        --btn-op: #ccc;
+        --btn-eq: #4caf50;
+        --btn-cl: #f44336;
+      }
+
+      body.dark {
+        --bg-color: #1e1e1e;
+        --text-color: #ffffff;
+        --btn-bg: #333;
+        --btn-op: #555;
+        --btn-eq: #2e7d32;
+        --btn-cl: #c62828;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: var(--bg-color);
+        color: var(--text-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        transition: background 0.3s, color 0.3s;
+      }
+
+      .calculator {
+        background: var(--bg-color);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 100%;
+      }
+
+      #display {
+        width: 100%;
+        font-size: 2rem;
+        margin-bottom: 10px;
+        padding: 10px;
+        text-align: right;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: #f9f9f9;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      .buttons button {
+        font-size: 1.5rem;
+        padding: 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background: var(--btn-bg);
+        transition: background 0.2s;
+      }
+
+      .operator {
+        background: var(--btn-op);
+      }
+      .equal {
+        background: var(--btn-eq);
+        color: white;
+      }
+      .clear {
+        background: var(--btn-cl);
+        color: white;
+      }
+
+      .history {
+        margin-top: 20px;
+        max-height: 150px;
+        overflow-y: auto;
+        background: #f1f1f1;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      .history div {
+        cursor: pointer;
+        padding: 5px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .history div:hover {
+        background: #ddd;
+      }
+
+      .theme-toggle {
+        margin-bottom: 15px;
+      }
+
+      @media (max-width: 500px) {
+        #display {
+          font-size: 1.5rem;
+        }
+        .buttons button {
+          font-size: 1.2rem;
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+    <div class="calculator">
+      <input type="text" id="display" disabled />
+      <div class="buttons">
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('/')" class="operator">/</button>
+
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('')" class="operator"></button>
+
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('-')" class="operator">-</button>
+
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+        <button onclick="toggleSign()">+/-</button>
+        <button onclick="append('+')" class="operator">+</button>
+
+        <button onclick="append('(')">(</button>
+        <button onclick="append(')')">)</button>
+        <button onclick="append('^')" class="operator">^</button>
+        <button onclick="appendSqrt()" class="operator">√</button>
+
+        <button onclick="backspace()">⌫</button>
+        <button onclick="clearDisplay()" class="clear">C</button>
+        <button onclick="calculate()" class="equal" style="grid-column: span 2">=</button>
+      </div>
+    </div>
+    <div class="history" id="history"></div>
+
+    <script>
+      let historyList = [];
+
+      function append(value) {
+        document.getElementById("display").value += value;
+      }
+
+      function appendSqrt() {
+        document.getElementById("display").value += "√(";
+      }
+
+      function backspace() {
+        let disp = document.getElementById("display");
+        disp.value = disp.value.slice(0, -1);
+      }
+
+      function clearDisplay() {
+        document.getElementById("display").value = "";
+      }
+
+      function toggleSign() {
+        let disp = document.getElementById("display");
+        if (disp.value) {
+          if (disp.value.startsWith("-")) {
+            disp.value = disp.value.substring(1);
+          } else {
+            disp.value = "-" + disp.value;
+          }
+        }
+      }
+
+      function calculate() {
+        let input = document.getElementById("display").value;
+        let original = input;
+
+        input = input.replace(/√\(/g, "Math.sqrt(");
+        // input = input.replace(/(\d+(\.\d+)?|\))\^(\d+(\.\d+)?|\()/g, (match, base, _, exponent) => Math.pow(${base},${exponent}));
+
+        try {
+          let result = eval(input);
+          document.getElementById("display").value = result;
+          addToHistory(original + " = " + result, original);
+        } catch {
+          alert("Input tidak valid");
+          clearDisplay();
+        }
+      }
+
+      function addToHistory(entry, originalInput) {
+        historyList.unshift({ text: entry, input: originalInput });
+        if (historyList.length > 10) historyList.pop();
+        updateHistoryDisplay();
+      }
+
+      function updateHistoryDisplay() {
+        const historyDiv = document.getElementById("history");
+        historyDiv.innerHTML = "";
+        historyList.forEach((item) => {
+          const div = document.createElement("div");
+          div.textContent = item.text;
+          div.onclick = () => {
+            document.getElementById("display").value = item.input;
+          };
+          historyDiv.appendChild(div);
+        });
+      }
+
+      function toggleTheme() {
+        document.body.classList.toggle("dark");
+      }
+    </script>
+  </body>
+</html>

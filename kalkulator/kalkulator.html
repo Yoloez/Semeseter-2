@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1 align="center">Calculator 2 number</h1>
+    <form id="calculator" action="">
+      <div class="input-angka">
+        <input type="number" id="num1" placeholder="Number 1" required />
+        <input type="number" id="num2" placeholder="Number 2" required />
+      </div>
+      <div class="calculate">
+        <select id="operator">
+          <option value="+" id="tambah">+</option>
+          <option value="-" id="kurang">-</option>
+          <option value="*" id="kali">*</option>
+          <option value="/" id="bagi">/</option>
+        </select>
+        <button type="button" onclick="cek()">Calculate</button>
+      </div>
+      <div id="result" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 20px" align="center">HASIL: <br /></div>
+    </form>
+    <script src="script.js"></script>
+  </body>
+</html>

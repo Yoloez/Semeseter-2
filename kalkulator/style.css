@@ -1,0 +1,52 @@
+body {
+  background-color: rgb(209, 235, 116);
+}
+
+form input {
+  padding: 1rem;
+  font-size: 24px;
+  border-radius: 6px;
+  border: black 3px solid;
+  width: 30%;
+  /* box-shadow: ; */
+}
+
+.input-angka {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+#operator {
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.999);
+  margin-top: 2rem;
+  padding: 1.4rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+form button {
+  padding: 1rem;
+  border-radius: 50px;
+  width: 20%;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: white;
+  transition: 0.2s ease-in-out;
+}
+
+form button:hover {
+  background-color: black;
+  color: white;
+}
+
+.calculate {
+  gap: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
